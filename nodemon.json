@@ -1,0 +1,13 @@
+{
+    "restartable": "rs",
+    "watch": [
+        "src"
+    ],
+    "ext": "json,ts",
+    "ignore": [
+        ".git",
+        "node_modules/",
+        "src/**/*.spec.ts"
+    ],
+    "exec": "npx ts-node ./src/main.ts"
+}
