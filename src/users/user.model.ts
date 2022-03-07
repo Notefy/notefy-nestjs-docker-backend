@@ -4,6 +4,7 @@ import * as jwt from 'jsonwebtoken';
 require('dotenv').config();
 
 export interface User {
+  userID: string;
   name: string;
   email: string;
   password: string;

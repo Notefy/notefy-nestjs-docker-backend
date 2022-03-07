@@ -25,6 +25,7 @@ import { AuthenticationMiddleware } from './authentication.middleware';
   ],
   controllers: [UserController],
   providers: [UserService],
+  exports: [MongooseModule],
 })
 export class UserModule {
   configure(consumer: MiddlewareConsumer) {

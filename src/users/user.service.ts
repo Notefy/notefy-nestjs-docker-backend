@@ -7,6 +7,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { User } from './user.model';
+import {
+  DeleteUserRequestDto,
+  DeleteUserResposeDto,
+  GenericUserResposeDto,
+  LoginUserRequestDto,
+  RegisterUserRequestDto,
+  UpdateUserRequestDto,
+} from './utils';
 
 @Injectable()
 export class UserService {
@@ -16,11 +24,7 @@ export class UserService {
     name,
     email,
     password,
-  }: {
-    name: string;
-    email: string;
-    password: string;
-  }): Promise<any> {
+  }: RegisterUserRequestDto): Promise<GenericUserResposeDto> {
     if (await this.userModel.findOne({ email }).exec())
       throw new UnauthorizedException('Invalid Username or Password');
 
@@ -39,13 +43,10 @@ export class UserService {
     };
   }
 
-  async signInUser({
+  async loginUser({
     email,
     password,
-  }: {
-    email: string;
-    password: string;
-  }): Promise<any> {
+  }: LoginUserRequestDto): Promise<GenericUserResposeDto> {
     if (!email || !password)
       throw new UnauthorizedException('Invalid Username or Password');
 
@@ -72,12 +73,7 @@ export class UserService {
     name,
     email,
     theme,
-  }: {
-    id: string;
-    name: string;
-    email: string;
-    theme: string;
-  }) {
+  }: UpdateUserRequestDto): Promise<GenericUserResposeDto> {
     let updatedUser, token;
     try {
       updatedUser = await this.userModel.findByIdAndUpdate(
@@ -105,13 +101,15 @@ export class UserService {
     };
   }
 
-  async deleteUser({ id, password }: { id: string; password: string }) {
+  async deleteUser({
+    id,
+    password,
+  }: DeleteUserRequestDto): Promise<DeleteUserResposeDto> {
     if (!password)
       throw new UnauthorizedException('Invalid Username or Password');
 
     const user = await this.userModel.findById(id);
-    if (!user)
-      throw new UnauthorizedException('Invalid Username or Password');
+    if (!user) throw new UnauthorizedException('Invalid Username or Password');
 
     if (!(await user.isPasswordCorrect(password)))
       throw new UnauthorizedException('Invalid Username or Password');

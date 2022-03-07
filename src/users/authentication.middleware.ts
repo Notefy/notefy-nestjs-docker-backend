@@ -1,4 +1,6 @@
 import {
+  HttpException,
+  HttpStatus,
   Injectable,
   NestMiddleware,
   Req,
@@ -22,14 +24,16 @@ declare global {
 }
 @Injectable()
 export class AuthenticationMiddleware implements NestMiddleware {
-
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
   async use(@Req() request: Request, respose: Response, next: NextFunction) {
     const authHeader = request.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer'))
-      throw new UnauthorizedException('Invalid Username or Password');
+      throw new HttpException(
+        { message: 'Missing authorization Header' },
+        HttpStatus.BAD_REQUEST,
+      );
 
     const token = authHeader.split(' ')[1];
 
