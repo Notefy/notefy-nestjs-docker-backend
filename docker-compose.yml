@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  node:
+    depends_on:
+      - mongodb
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: local
+      MONGO_URI: mongodb://mongodb:27017/
+      MONGO_DB_NAME: notefyTest
+      JWT_SECRET: 0nmj6ANenhGMAIdEAYQO5dNOdIcq6vgmfm3e
+      JWT_LIFETIME: 7d
+  mongodb:
+    image: mongo:latest
+    # restart: unless-stopped
+    restart: always
+    # environment:
+      # - MONGO_INITDB_ROOT_USERNAME: root
+      # - MONGO_INITDB_ROOT_PASSWORD: root
+      # - MONGO_INITDB_DATABASE: $MONGO_DB_NAME
+    ports:
+      - 2717:27017
+    volumes:
+      - mongo_db:/data/db
+
+volumes:
+  mongo_db: {}

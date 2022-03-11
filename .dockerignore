@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+
+thunder-tests
+
+Dockerfile
+.dockerignore
+docker-compose.yml
+docker-compose.override.yml

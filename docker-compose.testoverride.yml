@@ -1,0 +1,12 @@
+# version: '3'
+# services:
+#   node:
+#     container_name: starter_node
+#     command: npm run start
+#     environment:
+#       NPM_INSTALLED: ENABLE
+#     ports:
+#       - 3000:3000
+#       - 5858:5858
+# volumes:
+#   starter_api_data: {}

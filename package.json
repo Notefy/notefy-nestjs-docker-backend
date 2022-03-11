@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon",
     "start:nowatch": "ts-node ./src/main.ts",
-    "start:prod": "node dist/src/main.js",
+    "start:prod": "node dist/main.js",
     "tsc": "tsc",
     "build": "tsc",
     "build:prod": "npm run build",
