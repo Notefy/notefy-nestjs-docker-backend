@@ -1,8 +1,8 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "notefy-nest-backend",
   "private": true,
   "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "Notefy backend made on Dockerized Nest TypeScript starter repository",
   "license": "MIT",
   "scripts": {
     "start": "nodemon",

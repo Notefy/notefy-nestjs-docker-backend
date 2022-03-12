@@ -1,8 +1,14 @@
+# Node files
 node_modules
 npm-debug.log
 
+# Thunder client
 thunder-tests
 
+# dist files
+dist
+
+# Docker files
 Dockerfile
 .dockerignore
 docker-compose.yml
